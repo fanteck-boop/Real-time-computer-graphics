@@ -9,6 +9,10 @@ public class LightManipulation : MonoBehaviour
     public float maxDistance = 5.0f;
     public float verticalAmplitude = 2.0f;
 
+    [Header("Custom tweak: figure-8 path")]
+    public bool figureEight = false;   // Lissajous 1:2, light sweeps a figure-8 around the grid
+    public float figureEightRadius = 9f;
+
     void Update()
     {
         float time = Time.time * frequency;
@@ -17,6 +21,12 @@ public class LightManipulation : MonoBehaviour
         float y = Mathf.Cos(time) * verticalAmplitude; // Vertical oscillation
         float z = 0;
 
+        if (figureEight)
+        {
+            x = figureEightRadius * Mathf.Sin(time);
+            y = figureEightRadius * 0.5f * Mathf.Sin(2f * time);
+            z = -figureEightRadius * 0.6f * Mathf.Cos(time);
+        }
         pointLight.transform.position = new Vector3(x, y, z);
         float t = Mathf.Clamp01(Mathf.Abs(x) / amplitude);
 

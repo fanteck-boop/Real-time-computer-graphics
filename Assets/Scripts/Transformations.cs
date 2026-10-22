@@ -18,6 +18,14 @@ public class Transformations : MonoBehaviour
     public float scaleAmplitude = 5f;
     public float scaleOffset = 0f;
 
+    [Header("Custom tweak: cos-based pulse")]
+    // When on, each cube pulses between 0.4x and 1.6x of its start size with a phase that depends on
+    // its grid index, so neighbours stay distinct and a gap remains for shadows. Off = original tutorial maths.
+    public bool cosPulse = false;
+    public float pulseAmount = 0.6f;
+    public float pulsePhasePerCube = 0.07f;
+    public float pulseScale = 1f;      // overall size multiplier of the pulse (1 = start scale x (1 +- pulseAmount))
+
     [Header("Rotation Controls")]
     public float rotationSpeed = 1f;
 
@@ -38,7 +46,10 @@ public class Transformations : MonoBehaviour
                 {
                     createGrid.grid[i].localPosition = startPos[i] + Vector3.up * Mathf.Sin(Time.time * moveFrequency + moveOffset) * moveAmplitude;
 
-                    createGrid.grid[i].localScale = startScale * Mathf.Sin(Time.time * scaleFrequency) * scaleAmplitude + Vector3.one * scaleOffset;
+                    if (cosPulse)
+                        createGrid.grid[i].localScale = startScale * pulseScale * (1f + pulseAmount * Mathf.Cos(Time.time * scaleFrequency + i * pulsePhasePerCube));
+                    else
+                        createGrid.grid[i].localScale = startScale * Mathf.Sin(Time.time * scaleFrequency) * scaleAmplitude + Vector3.one * scaleOffset;
 
                     createGrid.grid[i].Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
                 }

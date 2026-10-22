@@ -6,6 +6,9 @@ public class CreateGrid : MonoBehaviour
 
     public int gridResolution = 10;
 
+    [Header("Custom tweak")]
+    public bool colourByPosition = true; // tutorial default; off = white cubes tinted only by the light
+
     public Transform[] grid;
 
     public Vector3[] startPos;
@@ -31,7 +34,7 @@ public class CreateGrid : MonoBehaviour
     {
         Transform point = Instantiate<Transform>(prefab);
         point.localPosition = GetCoordinates(x, y, z);
-        point.GetComponent<MeshRenderer>().material.color = new Color(
+        if (colourByPosition) point.GetComponent<MeshRenderer>().material.color = new Color(
             (float)x / gridResolution,
             (float)y / gridResolution,
             (float)z / gridResolution
