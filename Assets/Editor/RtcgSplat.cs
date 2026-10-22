@@ -12,7 +12,7 @@ using GaussianSplatting.Runtime;
 // Exercise 2 helpers: create the GaussianSplatAsset from the Brush .ply, build Ex02_Capture.unity, render evidence.
 public static class RtcgSplat
 {
-    const string Ply = @"C:\Users\trist\Downloads\Nisse - 300 images (1)\Nisse.ply";
+    const string Ply = @"C:\Users\trist\Downloads\Nisse - 300 images (1)\Nisse_crop.ply"; // made by Tools/nisse_colmap.py: only the Gaussians inside the Nisse volume
     const string OutFolder = "Assets/GaussianAssets";
     const string ScenePath = "Assets/Scenes/Ex02_Capture.unity";
 
@@ -62,7 +62,7 @@ public static class RtcgSplat
         var cam = camGO.AddComponent<Camera>();
         cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = new Color(0.12f, 0.12f, 0.14f);
         camGO.AddComponent<AudioListener>(); camGO.AddComponent<UniversalAdditionalCameraData>();
-        camGO.transform.position = new Vector3(0, 0.6f, -3.2f); camGO.transform.LookAt(new Vector3(0, 0.5f, 0));
+        camGO.transform.position = new Vector3(0, 0.55f, -2.3f); camGO.transform.LookAt(new Vector3(0, 0.5f, 0));
         var sun = new GameObject("Directional Light").AddComponent<Light>(); sun.type = LightType.Directional; sun.intensity = 1.1f;
         sun.transform.rotation = Quaternion.Euler(35, -25, 0);
 
@@ -70,25 +70,20 @@ public static class RtcgSplat
         mesh.name = "Nisse_Mesh"; mesh.transform.position = new Vector3(-0.8f, 0, 0);
         mesh.transform.rotation = Quaternion.Euler(0, 180, 0); // beard side faces the camera
 
-        var asset = AssetDatabase.LoadAssetAtPath<GaussianSplatAsset>(OutFolder + "/Nisse.asset");
+        var asset = AssetDatabase.LoadAssetAtPath<GaussianSplatAsset>(OutFolder + "/Nisse_crop.asset");
         var go = new GameObject("Nisse_Splat");
         var r = go.AddComponent<GaussianSplatRenderer>();
         r.m_Asset = asset;
-        // Splat file is in COLMAP/Brush space (arbitrary scale, y down): fit to about 1 unit tall and flip.
-        Vector3 size = asset.boundsMax - asset.boundsMin;
-        Debug.Log($"SPLAT asset bounds min={asset.boundsMin} max={asset.boundsMax} size={size} count={asset.splatCount}");
-        // Asset bounds are dominated by floaters (900 units wide). The Nisse core, found with a density analysis of the .ply,
-        // is about 0.45 x 1.25 x 0.45 splat units around (-0.06, 0.4, 0.75); scale that core to 1 unit tall.
-        float s = 1f / 1.25f;
-        go.transform.localScale = Vector3.one * s;
-        go.transform.rotation = Quaternion.Euler(Environment.GetEnvironmentVariable("RTCG_SPLAT_ROT") is string e ? ParseV(e) : new Vector3(180, 180, 0));
-        Vector3 c = new Vector3(-0.06f, 0.375f, 0.75f);
-        go.transform.position = new Vector3(0.8f, 0.5f, 0) - go.transform.rotation * (c * s);
-        // The Brush splat contains the whole room (floaters, chairs, walls). A box cutout, in splat units, keeps only the Nisse.
-        var cut = new GameObject("NisseCutout"); cut.transform.SetParent(go.transform, false);
-        cut.transform.localPosition = c; cut.transform.localScale = new Vector3(0.6f, 1.3f, 0.6f);
-        var gc = cut.AddComponent<GaussianCutout>(); gc.m_Type = GaussianCutout.Type.Box;
-        r.m_Cutouts = new[] { gc };
+        // The crop (Tools/nisse_colmap.py) is still in COLMAP/Brush space: y points down (mean camera up = -y, slightly tilted),
+        // arbitrary scale. Values below come from the COLMAP cameras: up vector, base centre of the figure, height 0.8082 units.
+        Debug.Log($"SPLAT asset bounds min={asset.boundsMin} max={asset.boundsMax} count={asset.splatCount}");
+        Vector3 up = new Vector3(0.037952795f, -0.99920909f, -0.011865021f);
+        Vector3 baseC = new Vector3(-0.05601580f, 0.55042170f, 0.76741911f);
+        float s = 1f / 0.80822526f;                                    // splat units to Unity units: Nisse 1 unit tall like the mesh
+        float yaw = Environment.GetEnvironmentVariable("RTCG_YAW") is string ey ? float.Parse(ey) : -20f;
+        go.transform.localScale = new Vector3(-s, s, s);              // x flip: COLMAP data is right handed, Unity is left handed (the package does not convert)
+        go.transform.rotation = Quaternion.Euler(0, yaw, 0) * Quaternion.FromToRotation(up, Vector3.up);
+        go.transform.position = new Vector3(0.8f, 0, 0) - go.transform.rotation * Vector3.Scale(baseC, go.transform.localScale);   // base centre sits on the floor next to the mesh
         EditorSceneManager.SaveScene(scene, ScenePath);
         Debug.Log("SPLAT scene saved " + ScenePath);
     }
@@ -100,6 +95,7 @@ public static class RtcgSplat
         EditorSceneManager.OpenScene(ScenePath);
         var cam = Camera.main;
         string dir = "Captures/Ex02"; Directory.CreateDirectory(dir);
+        var sp = GameObject.Find("Nisse_Splat").transform; Debug.Log($"SPLAT transform pos={sp.position:F4} euler={sp.eulerAngles:F2} scale={sp.localScale:F4}");
         Debug.Log("SPLAT graphics API: " + SystemInfo.graphicsDeviceType + " renderer=" + GaussianSplatRenderSystemActive());
         RtcgTools.WritePng(cam, Path.Combine(dir, "side_by_side.png"), 1600, 800);
         EditorApplication.Exit(0);
