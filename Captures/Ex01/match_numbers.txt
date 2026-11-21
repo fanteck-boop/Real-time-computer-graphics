@@ -1,0 +1,12 @@
+Exercise 1 match: reference gif (21 frames at 2 fps) vs Unity render (44 frames at 4 fps), mean over frames
+
+metric                                                          gif   render
+near-black pixel fraction (max channel < 12)                  0.946    0.849
+mean luminance of lit pixels (max channel > 120)             46.718   56.566
+lit pixel fraction                                            0.034    0.069
+mean luminance of unlit faces (max channel 12..90)           14.440   12.094
+unlit pixel fraction                                          0.019    0.079
+share of unlit pixels that are green-dominant                 0.221    0.912
+share of lit pixels fully saturated (>=240)                   0.650    0.746
+
+frames with >96% near-black: gif 11/21, render 0/44

@@ -1,0 +1,53 @@
+loaded C:\Users\trist\Desktop\Real-time-computer-graphics\Assets\Nisse\Nisse.obj: 145922 verts, 252265 faces
+welded: 126286 verts, 252265 faces, bbox extents [0.412 0.412 0.876], diagonal 1.0522
+  normals r=0.3% diag (0.0032) in 0.1s, 44.4% needed a sign flip
+  normals r=0.5% diag (0.0053) in 0.1s, 39.2% needed a sign flip
+  normals r=2.0% diag (0.0210) in 0.2s, 41.2% needed a sign flip
+  normals r=3.0% diag (0.0316) in 0.4s, 41.7% needed a sign flip
+  normals r=4.0% diag (0.0421) in 0.7s, 42.9% needed a sign flip
+
+ small%  large% nn_small    mean  median     p95  frac>0.2  time_s
+    0.3     2.0        8   0.203   0.148   0.603     37.4%     0.3
+    0.3     3.0        8   0.233   0.177   0.627     44.9%     0.5
+    0.3     4.0        8   0.253   0.201   0.639     50.2%     0.8
+    0.5     2.0       23   0.161   0.113   0.492     27.5%     0.3
+    0.5     3.0       23   0.197   0.144   0.575     36.9%     0.5
+    0.5     4.0       23   0.222   0.170   0.609     43.2%     0.8
+
+boundary edges: 325 (task says 325), boundary vertices: 325
+
+ small%  large%  near_bnd  elsewhere  ratio  rho(dihedral)
+    0.3     2.0     0.432      0.198   2.18          0.281
+    0.3     3.0     0.482      0.227   2.12          0.271
+    0.3     4.0     0.485      0.248   1.95          0.246
+    0.5     2.0     0.421      0.155   2.72          0.438
+    0.5     3.0     0.486      0.191   2.55          0.417
+    0.5     4.0     0.500      0.216   2.32          0.381
+
+PICK small=0.5% (0.0053), large=2.0% (0.0210)  [candidates [(0.5, 2.0), (0.5, 3.0)]]
+sign check: 1694 points (1.34%) have the two normals more than 90 deg apart
+
+SEGMENTATION |DoN| > 0.2: rough/high-detail 34683 (27.5%), smooth 91603 (72.5%)
+   threshold 0.1:   68835 points ( 54.5%)
+   threshold 0.2:   34683 points ( 27.5%)
+   threshold 0.3:   18435 points ( 14.6%)
+   threshold 0.5:    6050 points (  4.8%)
+
+HYPOTHESIS 1 boundary edges: points within 2% diag of a boundary vertex = 2.18% of all points
+   mean |DoN| near boundary 0.421  vs elsewhere 0.155  (ratio 2.72)
+   mean |DoN| ON boundary vertices 0.504
+   share of rough points that lie near the boundary: 6.5%
+   mean |DoN| by distance to boundary (% diag):
+      0.00 to   0.25%: n=   646  mean |DoN| 0.529
+      0.25 to   0.50%: n=   491  mean |DoN| 0.463
+      0.50 to   1.00%: n=   922  mean |DoN| 0.379
+      1.00 to   2.00%: n=   689  mean |DoN| 0.347
+      2.00 to   4.00%: n=  2687  mean |DoN| 0.296
+      4.00 to   8.00%: n= 29512  mean |DoN| 0.153
+      8.00 to 100.00%: n= 91339  mean |DoN| 0.152
+HYPOTHESIS 2 patchy normals: Spearman rho(|DoN|, mean dihedral angle at vertex) = 0.438
+   mean |DoN| where dihedral is in top 10% (>21.1 deg): 0.247; rest: 0.151
+   fraction of rough points that are also in top-10% dihedral: 17.4%
+
+figures in C:\Users\trist\Desktop\Real-time-computer-graphics\Captures\Ex11\don
+TOTAL RUNTIME 6.8s

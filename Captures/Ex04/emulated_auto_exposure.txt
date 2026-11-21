@@ -1,0 +1,4 @@
+mean linear luma lamp on 0.1207
+lamp off uncompensated 0.0465
+compensation 1.25 EV
+lamp off compensated 0.1207

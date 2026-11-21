@@ -1,0 +1,2 @@
+24808ba8e6a6f1c0398b30e5092aa7ac *Assets/Settings/PC_RPAsset.asset
+51807a4441812309e18959f6fa9d8f33 *Assets/Settings/PC_Renderer.asset

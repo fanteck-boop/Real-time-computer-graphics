@@ -1,0 +1,5 @@
+scenario,variant,count,frames,avg_ms,fps,p95_ms,max_ms,draw_calls,instances,setpass,triangles_M,vertices_M,cpu_frame_ms,cpu_render_ms
+small,Baseline,10000,240,3.61,277.3,3.89,5.03,8015,8009,42,40.397,40.212,3.61,3.47
+small,SrpBatcher,10000,240,3.08,324.3,3.32,5.55,8015,8009,38,40.397,40.212,2.94,2.81
+small,Instancing,10000,240,3.07,325.4,3.53,12.06,42,8009,42,40.397,40.212,2.67,2.56
+small,Grd,10000,240,3.01,332.4,6.41,21.93,10,8009,8,40.397,40.212,2.21,2.12
