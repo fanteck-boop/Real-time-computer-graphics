@@ -66,7 +66,7 @@ public static class RtcgSplat
         var sun = new GameObject("Directional Light").AddComponent<Light>(); sun.type = LightType.Directional; sun.intensity = 1.1f;
         sun.transform.rotation = Quaternion.Euler(35, -25, 0);
 
-        var mesh = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Nisse/Nisse.prefab"));
+        var mesh = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Nisse/Ex2/Nisse_Ex2.prefab"));
         mesh.name = "Nisse_Mesh"; mesh.transform.position = new Vector3(-0.8f, 0, 0);
         mesh.transform.rotation = Quaternion.Euler(0, 180, 0); // beard side faces the camera
 
