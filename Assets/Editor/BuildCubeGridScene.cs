@@ -61,6 +61,7 @@ public static class BuildCubeGridScene
         var tr = manager.AddComponent<Transformations>();
         tr.cosPulse = true; tr.moveAmplitude = 0f; tr.scaleFrequency = 1.5f;
         tr.pulseScale = 0.45f; tr.pulseAmount = 1f; tr.pulsePhasePerCube = 0.004f; // size 0..1, grid collapses to zero and regrows, slow wave through it
+        tr.waves = true; // custom tweak 4 and 5: distortion waves from random cubes + click shockwave
         // ponytail: default orbit distance (10) sits inside the 9-unit grid, filling the frame
         // with one close-up cube. 30 matches the reference gif's smaller, more distant look.
         CameraControl camControl = manager.AddComponent<CameraControl>();
