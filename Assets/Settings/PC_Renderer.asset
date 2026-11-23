@@ -27,7 +27,8 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
   - {fileID: 1825387179362119977}
-  m_RendererFeatureMap: ad6b866f10d7b46c29716ee3f7135519l
+  - {fileID: 8836356904312856444}
+  m_RendererFeatureMap: ad6b866f10d7b46c29716ee3f71355197c5f2396c90ba17al
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_AssetVersion: 3
@@ -95,3 +96,20 @@ MonoBehaviour:
     BlurQuality: 0
     Falloff: 100
     SampleCount: -1
+--- !u!114 &8836356904312856444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d617ae4d0416bc4eb24e965720b6b51, type: 3}
+  m_Name: ObjectOutline
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectOutlineFeature
+  m_Active: 1
+  settings:
+    WriteObject: {fileID: 2100000, guid: 46a22f775af0e98479ad2dc75770f375, type: 2}
+    ApplyOutline: {fileID: 2100000, guid: 68c50dcd32b1b9e418a68d5060009e4e, type: 2}
+    passEvent: 550
