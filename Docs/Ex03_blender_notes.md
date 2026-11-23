@@ -3,7 +3,9 @@
 Built with Claude Code.
 
 ## What was done
-The scan (photogrammetry export, `model.glb`, 252,265 triangles, embedded diffuse and normal map) was imported into Blender 5.2 LTS and rendered headless with Cycles. The Blender MCP server was not connected, so the scene is built by the script `blender_scene.py` run with `blender -b -P`. The glb is Y-up with the object offset from the origin; Blender's importer converts to Z-up. The mesh was scaled to 0.30 m tall, centred in XY and placed with its lowest point on Z=0. The glb's embedded 4 MB diffuse texture was used, not the 14 MB original jpeg. Material: the imported Principled BSDF with roughness set to 0.55 (satin, scan has no roughness map).
+The scan (photogrammetry export, `model.glb`, 178,672 triangles, embedded diffuse and normal map) was imported into Blender 5.2 LTS and rendered headless with Cycles. The Blender MCP server was not connected, so the scene is built by the script `blender_scene.py` run with `blender -b -P`. The glb is Y-up with the object offset from the origin; Blender's importer converts to Z-up. The mesh was scaled to 0.30 m tall, centred in XY and placed with its lowest point on Z=0. The glb's embedded 4 MB diffuse texture was used, not the 14 MB original jpeg. Material: the imported Principled BSDF with roughness set to 0.55 (satin, scan has no roughness map).
+
+The scan was later replaced by a cleaned version (178,672 triangles, base plate removed). The Blender file was re-rendered with the new mesh by `Docs/Ex03_swap_nisse.py`, which removes the old object and imports the new glb with the same placement (0.30 m tall, centred in XY, lowest point on Z=0, roughness 0.55). The earlier 252,265 triangle figure refers to the old mesh.
 
 ## Setup and numbers
 - Backdrop: a cyclorama (floor curving into a wall with a 0.8 m radius), diffuse grey (0.22), roughness 0.7, so there is no visible horizon line.

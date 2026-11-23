@@ -34,4 +34,22 @@ public static class RtcgNisseV2
         Debug.Log("NISSE v2 prefab saved, scale factor " + s);
         AssetDatabase.SaveAssets();
     }
+
+    // Full 8192 diffuse (source resolution), high quality compression, anisotropic filtering 8.
+    public static void TextureFull()
+    {
+        string p = Dir + "Nisse_diffuse.jpeg";
+        var ti = (TextureImporter)AssetImporter.GetAtPath(p);
+        ti.maxTextureSize = 8192;
+        ti.textureCompression = TextureImporterCompression.CompressedHQ;
+        ti.anisoLevel = 8;
+        ti.mipmapEnabled = true;
+        foreach (var plat in new[] { "Standalone", "Windows" })
+        {
+            var ps = ti.GetPlatformTextureSettings(plat);
+            if (ps.overridden) { ps.maxTextureSize = 8192; ps.textureCompression = TextureImporterCompression.CompressedHQ; ti.SetPlatformTextureSettings(ps); }
+        }
+        ti.SaveAndReimport();
+        Debug.Log($"NISSE texture max={ti.maxTextureSize} aniso={ti.anisoLevel}");
+    }
 }

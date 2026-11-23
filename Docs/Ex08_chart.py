@@ -34,10 +34,10 @@ fig, ax = plt.subplots(1, 3, figsize=(15, 4.8))
 panel(ax[0], "main", 0, "Average frame time (lower is better)", "ms per frame (1920x1080)", fmt="{:.1f}")
 panel(ax[1], "main", 1, "Draw calls per frame (log scale)", "draw calls", log=True)
 panel(ax[2], "main", 3, "Triangles sent per frame (log scale)", "million triangles", log=True, fmt="{:.1f}")
-fig.suptitle("Ex8 main scenario: 2 500 scanned Nisse (252k triangles each), RTX 4070 SUPER", fontsize=12)
+fig.suptitle("Ex8 main scenario: 2 500 scanned Nisse (179k triangles each), RTX 4070 SUPER", fontsize=12)
 plt.tight_layout(); plt.savefig(base + "/ex08_chart_main.png", dpi=120); plt.close()
 fig, ax = plt.subplots(2, 2, figsize=(11, 8))
-for j, (sc, t) in enumerate((("small", "5k-triangle mesh x 10 000"), ("tiny", "1.3k-triangle mesh x 20 000"))):
+for j, (sc, t) in enumerate((("small", "3.6k-triangle mesh x 10 000"), ("tiny", "0.9k-triangle mesh x 20 000"))):
     panel(ax[0][j], sc, 0, f"{t}: frame time", "ms per frame", fmt="{:.2f}")
     panel(ax[1][j], sc, 1, f"{t}: draw calls (log)", "draw calls", log=True)
 fig.suptitle("Ex8 supplementary: light meshes, where draw-call cost shows", fontsize=12)
