@@ -1,0 +1,28 @@
+DoF Bokeh focal 200 mm f/1.4: focus Nisse 2 at 9.90 m
+  other focus picture (cats sleigh) at 5.89 m
+  depth of Nisse 1: 7.40 m
+  depth of Nisse 2: 9.90 m
+  depth of Nisse 3: 7.40 m
+  depth of picture (cats sleigh): 5.89 m
+Exposure (scripted log-average metering of the HDR scene before post exposure, 64x36):
+  all lights on : luminance 0.00393  target EV 0.00  applied 0.00
+  main lights off, no adaptation: luminance 0.00046  target EV +3.08  applied 0.00
+  main lights off, adapted after 7.2 s: luminance 0.00046  target EV +3.08  applied +3.07
+  ratio on/off 8.5 = 3.08 EV
+  (arithmetic mean of the meter pixels: on 0.11322, off 0.02581, ratio 4.4)
+  mean display luminance of the PNGs: 4a 0.0755  4b 0.0177  4c 0.0576
+  adaptation curve:
+    t 0.5 s  EV +1.02
+    t 1.0 s  EV +1.70
+    t 1.5 s  EV +2.15
+    t 2.0 s  EV +2.46
+    t 2.5 s  EV +2.66
+    t 3.0 s  EV +2.80
+    t 3.5 s  EV +2.89
+    t 4.0 s  EV +2.96
+    t 4.5 s  EV +3.00
+    t 5.0 s  EV +3.03
+    t 5.5 s  EV +3.04
+    t 6.0 s  EV +3.06
+    t 6.5 s  EV +3.06
+    t 7.0 s  EV +3.07

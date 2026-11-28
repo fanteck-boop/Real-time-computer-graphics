@@ -1,0 +1,9 @@
+centre_x=0
+centre_z=0
+ortho_size=46
+pixels=1080
+player_x=0
+player_z=0
+yaw=30
+hfov_deg=91.49284
+far=120

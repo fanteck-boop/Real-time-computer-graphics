@@ -1,0 +1,19 @@
+# Conda environment for Exercise 9 (voxel Nisse).
+# Create:  conda env create -f environment.yml   (add --override-channels if conda asks about channel terms)
+# Python comes from conda-forge, the libraries from PyPI with pip. Versions are the ones actually installed.
+name: rtcg_ex9
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11.18
+  - pip
+  - pip:
+      - pyvista==0.49.3        # brings vtk 9.7.2 and matplotlib 3.11.2 (colormap)
+      - vtk==9.7.2
+      - scipy==1.17.1
+      - numpy==2.4.6
+      - trimesh==5.2.2
+      - pillow==13.0.0
+      - matplotlib==3.11.2
+      - imageio==2.38.2
+      - imageio-ffmpeg==0.8.1
